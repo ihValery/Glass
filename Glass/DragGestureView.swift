@@ -30,26 +30,14 @@ struct DragGestureView: View {
     var body: some View {
         GeometryReader { grProxy in
             purpleRectangle
+                .gesture(simpleDrag(grProxy).simultaneously(with: fingerDrag))
         }
-    }
-    
-    private var simpleDrag: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                var newLocation = startLocation ?? location
-                newLocation.x += value.translation.width
-                newLocation.y += value.translation.height
-                
-                location = newLocation
-            }
-            .updating($startLocation) { value, fingerLocation, transaction in
-                fingerLocation = startLocation ?? location
-            }
+        .ignoresSafeArea()
     }
     
     private var fingerDrag: some Gesture {
         DragGesture()
-            .updating($fingerLocation) { value, fingerLocation, transaction in
+            .updating($fingerLocation) { value, fingerLocation, _ in
                 fingerLocation = value.location
             }
     }
@@ -60,7 +48,6 @@ struct DragGestureView: View {
             .frame(width: Constant.rectangle.width,
                    height: Constant.rectangle.height)
             .position(location)
-            .gesture(simpleDrag.simultaneously(with: fingerDrag))
             .overlay(fingerPrint)
     }
     
@@ -75,6 +62,41 @@ struct DragGestureView: View {
                 .frame(width: 50, height: 50)
                 .position(fingerLocation)
         }
+    }
+    
+    //MARK: Private Methods
+
+    private func simpleDrag(_ grproxy: GeometryProxy) -> some Gesture {
+        DragGesture(minimumDistance: 1)
+            .updating($startLocation) { _, startLocation, _ in
+                startLocation = startLocation ?? location
+            }
+            .onChanged { value in
+                var newLocation = startLocation ?? location
+                newLocation.x += value.translation.width
+                newLocation.y += value.translation.height
+                
+                location = newLocation
+            }
+            .onEnded { value in
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                    if location.x < Constant.rectangle.width / 2 {
+                        location.x = Constant.rectangle.width / 2 + 3
+                    }
+                    
+                    if location.y < Constant.rectangle.height / 2 + 36 {
+                        location.y = Constant.rectangle.height / 2 + 36
+                    }
+                    
+                    if location.x > grproxy.size.width - Constant.rectangle.width / 2 {
+                        location.x = grproxy.size.width - Constant.rectangle.width / 2 - 3
+                    }
+                    
+                    if location.y > grproxy.size.height - Constant.rectangle.height / 2 {
+                        location.y = grproxy.size.height - Constant.rectangle.height / 2 - 3
+                    }
+                }
+            }
     }
 }
 
