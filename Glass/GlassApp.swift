@@ -11,7 +11,8 @@ import SwiftUI
 struct GlassApp: App {
     var body: some Scene {
         WindowGroup {
-            GlassView()
+//            GlassView()
+            DragGestureView()
         }
     }
 }

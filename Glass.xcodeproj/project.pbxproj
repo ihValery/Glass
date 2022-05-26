@@ -11,6 +11,7 @@
 		808AC228283CF2A9004551D3 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808AC227283CF2A9004551D3 /* GlassView.swift */; };
 		808AC22A283CF2AA004551D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808AC229283CF2AA004551D3 /* Assets.xcassets */; };
 		808AC22D283CF2AA004551D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808AC22C283CF2AA004551D3 /* Preview Assets.xcassets */; };
+		809E9F07283FA7280023E3E1 /* DragGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809E9F06283FA7280023E3E1 /* DragGestureView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		808AC227283CF2A9004551D3 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
 		808AC229283CF2AA004551D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		808AC22C283CF2AA004551D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		809E9F06283FA7280023E3E1 /* DragGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				808AC225283CF2A9004551D3 /* GlassApp.swift */,
+				809E9F06283FA7280023E3E1 /* DragGestureView.swift */,
 				808AC227283CF2A9004551D3 /* GlassView.swift */,
 				808AC229283CF2AA004551D3 /* Assets.xcassets */,
 				808AC22B283CF2AA004551D3 /* Preview Content */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				808AC228283CF2A9004551D3 /* GlassView.swift in Sources */,
+				809E9F07283FA7280023E3E1 /* DragGestureView.swift in Sources */,
 				808AC226283CF2A9004551D3 /* GlassApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
