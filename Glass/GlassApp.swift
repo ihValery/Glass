@@ -12,6 +12,7 @@ struct GlassApp: App {
     var body: some Scene {
         WindowGroup {
             GlassView()
+//            DragGestureView()
         }
     }
 }
