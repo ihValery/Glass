@@ -14,6 +14,7 @@ struct GlassView: View {
     //MARK: Properties
     
     @State private var gestureValue: CGSize = .zero
+    @State private var lastGestureOffset: CGSize = .zero
     
     var body: some View {
         ZStack {
@@ -22,16 +23,21 @@ struct GlassView: View {
                 .blendMode(.overlay)
                 .cornerRadius(25)
                 .overlay(overlayCard)
-                .offset(x: gestureValue.width, y: gestureValue.height)
+                .offset(gestureValue)
+//                .offset(x: gestureValue.width, y: gestureValue.height)
                 .shadow(color: .white.opacity(0.4), radius: 3, x: 0, y: -3)
                 .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
+//                .contentShape(Rectangle())
                 .gesture(
                     DragGesture()
                         .onChanged { value in
-                            withAnimation(.linear(duration: 0.1
-                                                 )) {
-                                gestureValue = value.translation
+                            withAnimation(.linear(duration: 0.1)) {
+                                gestureValue = CGSize(width: value.translation.width + lastGestureOffset.width,
+                                                      height: value.translation.height + lastGestureOffset.height)
                             }
+                        }
+                        .onEnded { _ in
+                            lastGestureOffset = gestureValue
                         }
                 )
         }
