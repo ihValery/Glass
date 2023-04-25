@@ -27,6 +27,7 @@ struct GlassView: View {
 //                .offset(x: gestureValue.width, y: gestureValue.height)
                 .shadow(color: .white.opacity(0.4), radius: 3, x: 0, y: -3)
                 .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 5)
+//                .contentShape(Rectangle())
                 .gesture(
                     DragGesture()
                         .onChanged { value in

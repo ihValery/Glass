@@ -126,6 +126,15 @@ fileprivate struct MagnigicationEffectHelper<Content: View>: View {
     
     var body: some View {
         content
+        //MARK: Applying Reverse Mask For Clipping the Current Highlighting Spot
+            .reversMask {
+                let newCircleSize = 175.0 + size
+                
+                Circle()
+                    .frame(width: newCircleSize, height: newCircleSize)
+                    .offset(offset)
+            }
+        
             .overlay {
                 GeometryReader {
                     let newCircleSize = 175.0 + size
@@ -133,9 +142,11 @@ fileprivate struct MagnigicationEffectHelper<Content: View>: View {
                     
                     content
 //                        .frame(width: size.width, height: size.height)
+                        .offset(x: -offset.width, y: -offset.height)
                         .frame(width: newCircleSize, height: newCircleSize)
                         .scaleEffect(1 + scale)
                         .clipShape(Circle())
+                        .offset(offset)
                         .frame(width: size.width, height: size.height)
                 }
             }
@@ -143,12 +154,28 @@ fileprivate struct MagnigicationEffectHelper<Content: View>: View {
             .gesture(
                 DragGesture()
                     .onChanged({ value in
-                        offset = value.translation
+                        offset = CGSize(width: value.translation.width + lastStoredOffset.width,
+                                        height: value.translation.height + lastStoredOffset.height)
                     })
                     .onEnded({ _ in
                         lastStoredOffset = offset
                     })
             )
+    }
+}
+
+//MARK: - Revers mask modifier
+
+extension View {
+    @ViewBuilder func reversMask<Content: View>(@ViewBuilder content: @escaping () -> Content) -> some View {
+        self
+            .mask {
+                Rectangle()
+                    .overlay {
+                        content()
+                            .blendMode(.destinationOut)
+                    }
+            }
     }
 }
 
