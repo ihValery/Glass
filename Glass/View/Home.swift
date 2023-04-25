@@ -24,6 +24,7 @@ struct Home: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: size.width, height: size.height)
+                    .magnificationEffect(scale, rotation, self.size)
             }
             .padding(50)
             .contentShape(Rectangle())
@@ -82,3 +83,72 @@ struct Home_Previews: PreviewProvider {
         Home()
     }
 }
+
+//MARK: - Custom view modifier
+
+extension View {
+    @ViewBuilder func magnificationEffect(_ scale: CGFloat,
+                                          _ rotation: CGFloat,
+                                          _ size: CGFloat = 0) -> some View {
+        MagnigicationEffectHelper(scale: scale, rotation: rotation, size: size) {
+            self
+        }
+    }
+}
+
+//MARK: - Magnification effect helper
+
+fileprivate struct MagnigicationEffectHelper<Content: View>: View {
+    
+    //MARK: Properties
+
+    var scale: CGFloat
+    var rotation: CGFloat
+    var size: CGFloat
+    
+    var content: Content
+    
+    init(scale: CGFloat,
+         rotation: CGFloat,
+         size: CGFloat,
+         @ViewBuilder content: @escaping() -> Content) {
+     
+        self.scale = scale
+        self.rotation = rotation
+        self.size = size
+        self.content = content()
+    }
+    
+    //MARK: Gesture Properties
+
+    @State private var offset: CGSize = .zero
+    @State private var lastStoredOffset: CGSize = .zero
+    
+    var body: some View {
+        content
+            .overlay {
+                GeometryReader {
+                    let newCircleSize = 175.0 + size
+                    let size = $0.size
+                    
+                    content
+//                        .frame(width: size.width, height: size.height)
+                        .frame(width: newCircleSize, height: newCircleSize)
+                        .scaleEffect(1 + scale)
+                        .clipShape(Circle())
+                        .frame(width: size.width, height: size.height)
+                }
+            }
+            .contentShape(Rectangle())
+            .gesture(
+                DragGesture()
+                    .onChanged({ value in
+                        offset = value.translation
+                    })
+                    .onEnded({ _ in
+                        lastStoredOffset = offset
+                    })
+            )
+    }
+}
+
