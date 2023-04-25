@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8072CE5F29F8144900E19B86 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8072CE5E29F8144900E19B86 /* Home.swift */; };
 		808AC226283CF2A9004551D3 /* GlassApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808AC225283CF2A9004551D3 /* GlassApp.swift */; };
 		808AC228283CF2A9004551D3 /* GlassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808AC227283CF2A9004551D3 /* GlassView.swift */; };
 		808AC22A283CF2AA004551D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 808AC229283CF2AA004551D3 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8072CE5E29F8144900E19B86 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		808AC222283CF2A9004551D3 /* Glass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		808AC225283CF2A9004551D3 /* GlassApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassApp.swift; sourceTree = "<group>"; };
 		808AC227283CF2A9004551D3 /* GlassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassView.swift; sourceTree = "<group>"; };
@@ -34,6 +36,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8072CE5C29F813F500E19B86 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				809E9F06283FA7280023E3E1 /* DragGestureView.swift */,
+				808AC227283CF2A9004551D3 /* GlassView.swift */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
+		8072CE5D29F8143900E19B86 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8072CE5E29F8144900E19B86 /* Home.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		808AC219283CF2A9004551D3 = {
 			isa = PBXGroup;
 			children = (
@@ -54,8 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				808AC225283CF2A9004551D3 /* GlassApp.swift */,
-				809E9F06283FA7280023E3E1 /* DragGestureView.swift */,
-				808AC227283CF2A9004551D3 /* GlassView.swift */,
+				8072CE5D29F8143900E19B86 /* View */,
+				8072CE5C29F813F500E19B86 /* Old */,
 				808AC229283CF2AA004551D3 /* Assets.xcassets */,
 				808AC22B283CF2AA004551D3 /* Preview Content */,
 			);
@@ -142,6 +161,7 @@
 			files = (
 				808AC228283CF2A9004551D3 /* GlassView.swift in Sources */,
 				809E9F07283FA7280023E3E1 /* DragGestureView.swift in Sources */,
+				8072CE5F29F8144900E19B86 /* Home.swift in Sources */,
 				808AC226283CF2A9004551D3 /* GlassApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
